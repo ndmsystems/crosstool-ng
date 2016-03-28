@@ -1,0 +1,20 @@
+diff --git a/extra/Configs/Config.in b/extra/Configs/Config.in
+index f3f573d..cfd7f92 100644
+--- a/extra/Configs/Config.in
++++ b/extra/Configs/Config.in
+@@ -545,7 +545,6 @@ config LINUXTHREADS_OLD
+ 		   !TARGET_arm && \
+ 		   !TARGET_i386 && \
+ 		   !TARGET_metag && \
+-		   !TARGET_mips && \
+ 		   !TARGET_powerpc && \
+ 		   !TARGET_sh && \
+ 		   !TARGET_sparc && \
+@@ -565,7 +564,6 @@ config LINUXTHREADS_NEW
+ 		   !TARGET_arm && \
+ 		   !TARGET_i386 && \
+ 		   !TARGET_metag && \
+-		   !TARGET_mips && \
+ 		   !TARGET_powerpc && \
+ 		   !TARGET_sh && \
+ 		   !TARGET_sparc && \
