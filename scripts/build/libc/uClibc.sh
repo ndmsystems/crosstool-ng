@@ -94,14 +94,7 @@ do_libc_start_files() {
     # Retrieve the config file
     CT_DoExecLog ALL cp "${CT_CONFIG_DIR}/uClibc.config" .config
 
-    # uClibc uses the CROSS environment variable as a prefix to the
-    # compiler tools to use.  Setting it to the empty string forces
-    # use of the native build host tools, which we need at this
-    # stage, as we don't have target tools yet.
-    # BUT! With NPTL, we need a cross-compiler (and we have it)
-    if [ "${CT_THREADS}" = "nptl" ]; then
-        cross="${CT_TARGET}-"
-    fi
+    cross="${CT_TARGET}-"
 
     # Force the date of the pregen locale data, as the
     # newer ones that are referenced are not available
