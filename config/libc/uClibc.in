@@ -36,6 +36,32 @@ config LIBC_UCLIBC_V_0_9_33_2
     prompt "0.9.33.2"
     select LIBC_UCLIBC_0_9_33_2_or_later
 
+config LIBC_UCLIBC_GIT
+    bool "git"
+    select LIBC_UCLIBC_0_9_33_2_or_later
+    help
+      Grab the latest version of uClibc from Git repository.
+
+if LIBC_UCLIBC_GIT
+
+config LIBC_UCLIBC_GIT_URL
+    string
+    prompt "git URL"
+    default "git://uclibc-ng.org/git/uclibc-ng"
+    help
+      Specify the URL of uClibc Git repository.
+
+config LIBC_UCLIBC_GIT_CSET
+    string
+    prompt "git cset"
+    default "ref=HEAD"
+    help
+      Enter the Git changeset to use.
+
+      The default currently points to the HEAD of the Git tree.
+
+endif # LIBC_UCLIBC_GIT
+
 config LIBC_UCLIBC_CUSTOM
     bool
     prompt "Custom uClibc"
@@ -62,6 +88,8 @@ config LIBC_VERSION
 # CT_INSERT_VERSION_STRING_BELOW
     default "1.0.9" if LIBC_UCLIBC_NG_V_1_0_9
     default "0.9.33.2" if LIBC_UCLIBC_V_0_9_33_2
+    default "custom" if LIBC_UCLIBC_CUSTOM
+    default LIBC_UCLIBC_GIT_CSET if LIBC_UCLIBC_GIT
 
 config LIBC_UCLIBC_NG_1_0_9_or_later
     bool
