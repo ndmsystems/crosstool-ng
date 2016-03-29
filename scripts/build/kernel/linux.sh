@@ -30,6 +30,10 @@ do_kernel_get() {
     if [ "${CT_KERNEL_LINUX_CUSTOM}" = "y" ]; then
         CT_GetCustom "linux" "${CT_KERNEL_VERSION}"     \
                      "${CT_KERNEL_LINUX_CUSTOM_LOCATION}"
+    elif [ "${CT_KERNEL_GIT}" = "y" ]; then
+        # Override option 'CT_KERNEL_VERSION'
+        CT_GetGit "linux" "${CT_KERNEL_GIT_CSET}" "${CT_KERNEL_GIT_URL}" \
+                  CT_KERNEL_VERSION
     else # Not a custom tarball
         case "${CT_KERNEL_VERSION}" in
             2.6.*.*|3.*.*|4.*.*)
@@ -74,10 +78,12 @@ do_kernel_extract() {
     # tarball; in either case, we need to extract
     CT_Extract "linux-${CT_KERNEL_VERSION}"
 
-    # If using a custom tarball, no need to patch
-    if [ "${CT_KERNEL_LINUX_CUSTOM}" = "y" ]; then
+    # If using a custom tarball or GIT, no need to patch
+    if [ "${CT_KERNEL_LINUX_CUSTOM}" = "y" \
+         -o "${CT_KERNEL_GIT}" = "y" ]; then
         return 0
     fi
+
     CT_Patch "linux" "${CT_KERNEL_VERSION}"
 }
 
@@ -104,9 +110,6 @@ do_kernel_install() {
     mkdir -p "${CT_BUILD_DIR}/build-kernel-headers"
 
     kernel_path="${CT_SRC_DIR}/linux-${CT_KERNEL_VERSION}"
-    if [ "${CT_KERNEL_LINUX_CUSTOM}" = "y" ]; then
-        kernel_path="${CT_SRC_DIR}/linux-custom"
-    fi
     V_OPT="V=${CT_KERNEL_LINUX_VERBOSE_LEVEL}"
 
     kernel_arch="${CT_ARCH}"

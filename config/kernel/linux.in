@@ -67,6 +67,32 @@ config KERNEL_V_2_6_32
     bool
     prompt "2.6.32.68"
     help
+
+config KERNEL_GIT
+    bool
+    prompt "git"
+    help
+      Grab the latest version of kernel from Git repository.
+
+if KERNEL_GIT
+
+config KERNEL_GIT_URL
+    string
+    prompt "git URL"
+    default "git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git"
+    help
+      Specify the URL of kernel Git repository.
+
+config KERNEL_GIT_CSET
+    string
+    prompt "git cset"
+    default "ref=HEAD"
+    help
+      Enter the Git changeset to use.
+
+      The default currently points to the HEAD of the Git tree.
+
+endif # KERNEL_GIT
  
 config KERNEL_LINUX_CUSTOM
     bool
@@ -74,13 +100,16 @@ config KERNEL_LINUX_CUSTOM
     help
       Use a local tarball or local kernel directory of a complete kernel source tree.
 
+if KERNEL_LINUX_CUSTOM
+
 config KERNEL_LINUX_CUSTOM_LOCATION
     string
     prompt "Path to custom source, tarball or directory"
-    depends on KERNEL_LINUX_CUSTOM
     help
       Enter here the path to the tarball of your full kernel tree or
       kernel directory
+
+endif # KERNEL_LINUX_CUSTOM
 
 endchoice
 
@@ -99,6 +128,7 @@ config KERNEL_VERSION
     default "3.2.72" if KERNEL_V_3_2
     default "2.6.32.68" if KERNEL_V_2_6_32
     default "custom" if KERNEL_LINUX_CUSTOM
+    default KERNEL_GIT_CSET if KERNEL_GIT
 
 endif # ! KERNEL_LINUX_USE_CUSTOM_HEADERS
 
