@@ -1,0 +1,9 @@
+# Toolchain addons config options
+
+menu "Toolchain addons"
+
+config TOOLCHAIN_ADDONS_node
+    bool
+    prompt "node"
+
+endmenu

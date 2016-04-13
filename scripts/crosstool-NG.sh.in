@@ -146,6 +146,7 @@ CT_DoLog INFO "Building environment variables"
 . "${CT_LIB_DIR}/scripts/build/cc.sh"
 . "${CT_LIB_DIR}/scripts/build/debug.sh"
 . "${CT_LIB_DIR}/scripts/build/test_suite.sh"
+. "${CT_LIB_DIR}/scripts/build/toolchain_addons.sh"
 
 # Target tuple: CT_TARGET needs a little love:
 CT_DoBuildTargetTuple
@@ -594,6 +595,7 @@ if [ -z "${CT_RESTART}" ]; then
     do_libc_get
     do_debug_get
     do_test_suite_get
+    do_toolchain_addons_get
     CT_EndStep
 
     if [ "${CT_ONLY_DOWNLOAD}" != "y" ]; then
@@ -617,6 +619,7 @@ if [ -z "${CT_RESTART}" ]; then
         do_libc_extract
         do_debug_extract
         do_test_suite_extract
+        do_toolchain_addons_extract
         CT_EndStep
     fi
 fi

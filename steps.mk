@@ -35,6 +35,7 @@ CT_STEPS := libc_check_config          \
             binutils_for_target        \
             debug                      \
             test_suite                 \
+            toolchain_addons           \
             finish                     \
 
 # Keep an empty line above this comment, so the last
