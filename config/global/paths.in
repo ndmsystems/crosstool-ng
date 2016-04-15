@@ -136,3 +136,9 @@ config STRIP_TARGET_TOOLCHAIN_EXECUTABLES
       An install-strip make target is provided that installs stripped
       executables, and may install libraries with unneeded or debugging
       sections stripped. 
+
+config CREATE_TARBALL
+    bool
+    prompt "Create tarball"
+    help
+      Create tarball with toolchain in ${CT_TOP_DIR}.
