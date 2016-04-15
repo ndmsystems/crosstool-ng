@@ -718,4 +718,9 @@ if [ "${CT_TEST_SUITE}" = "y" -a -d "${CT_TEST_SUITE_DIR}" ]; then
     chmod -R u+w "${CT_TEST_SUITE_DIR}"
 fi
 
+if [ "${CT_CREATE_TARBALL}" = "y" ]; then
+    n="${CT_TOP_DIR}/toolchain_${CT_VERSION}_${CT_TARGET}_$(date +%d%m%Y_%H%M).tar.bz2"
+    tar cjf "${n}" -C "${CT_PREFIX_DIR}" .
+fi
+
 trap - EXIT
