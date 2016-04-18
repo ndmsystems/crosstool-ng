@@ -178,6 +178,7 @@ config BINUTILS_HAS_GOLD
 config BINUTILS_GOLD_SUPPORTS_ARCH
     bool
     default y if ARCH_arm
+    default y if ARCH_mips
     default y if ARCH_x86
 
 config BINUTILS_GOLD_SUPPORT
