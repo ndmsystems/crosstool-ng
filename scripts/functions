@@ -2245,14 +2245,15 @@ CT_GetPkgBuildVersion()
     fi
 
     __do_GetPkgBuildVersion() {
-        tmp="${pkg_name}-${version}"
+        tmp="${pkg_name}"
         if [ "${src_devel}" = "y" ]; then
-            tmp+="-${devel_vcs}"
             if [ -n "${devel_revision}" ]; then
                 tmp+="-${devel_revision}"
             fi
         elif [ "${src_custom}" = "y" ]; then
-            tmp+="-custom"
+            tmp+="-${version}-custom"
+        else
+            tmp+="-${version}"
         fi
         if [ -n "${choicename}" -a "${pkg}" != "${component}" ]; then
             tmp+=" (${choicename})"
