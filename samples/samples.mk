@@ -127,7 +127,7 @@ samples:
 	$(SILENT)mkdir -p $@
 
 # Save a sample
-saveconfig: .config samples
+saveconfig: .config samples show-config
 	$(SILENT)CONF=$(CONF) $(bash) $(CT_LIB_DIR)/scripts/saveSample.sh
 
 # The 'sample_dir' function prints the directory in which the sample is,
