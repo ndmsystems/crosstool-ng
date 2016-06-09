@@ -1343,6 +1343,12 @@ do_gcc_backend() {
         CT_DoExecLog ALL make install
     fi
 
+    if [ "${CT_CC_GCC_USE_LTO}" = "y" ]; then
+        CT_mkdir_pushd "${CT_PREFIX_DIR}/lib/bfd-plugins"
+        CT_DoExecLog ALL ln -sfv "../../libexec/gcc/${CT_TARGET}/${CT_GCC_VERSION}/liblto_plugin.so"
+        CT_Popd
+    fi
+
     # Remove the libtool "pseudo-libraries": having them in the installed
     # tree makes the libtoolized utilities that are built next assume
     # that, for example, libsupc++ is an "accessory library", and not include
