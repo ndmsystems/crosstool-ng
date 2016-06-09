@@ -6,4 +6,10 @@ config TOOLCHAIN_ADDONS_node
     bool
     prompt "node"
 
+config TOOLCHAIN_ADDONS_node_STATIC
+    bool
+    prompt "Build a static node"
+    depends on TOOLCHAIN_ADDONS_node
+    default y
+
 endmenu

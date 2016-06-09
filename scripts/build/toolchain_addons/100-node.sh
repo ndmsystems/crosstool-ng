@@ -16,7 +16,7 @@ do_toolchain_addons_node_build() {
     CT_DoStep EXTRA "Installing node"
     local -a extra_config
 
-    if [ "${CT_STATIC_TOOLCHAIN}" = "y" ]; then
+    if [ "${CT_TOOLCHAIN_ADDONS_node_STATIC}" = "y" ]; then
         extra_config+=("--fully-static")
     fi
 
