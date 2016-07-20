@@ -1,6 +1,6 @@
 # Build script for node
 
-CT_NODE_VERSION=v4.4.3
+CT_NODE_VERSION=v4.4.7
 
 do_toolchain_addons_node_get() {
     CT_GetFile "node-${CT_NODE_VERSION}"    \
