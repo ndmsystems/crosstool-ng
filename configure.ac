@@ -4,7 +4,7 @@
 AC_PREREQ([2.67])
 AC_INIT(
     [crosstool-NG],
-    [m4_esyscmd_s([git describe --always --dirty])],
+    [m4_esyscmd_s(git describe --tag | sed -e s/-g/-/)],
     [crossgcc@sourceware.org])
 AC_CONFIG_AUX_DIR([scripts])
 
