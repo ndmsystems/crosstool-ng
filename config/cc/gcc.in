@@ -241,7 +241,7 @@ config CC_GCC_LIBSANITIZER
     bool
     prompt "Compile libsanitizer"
     depends on THREADS_NATIVE
-    depends on !LIBC_UCLIBC && !LIBC_MUSL # Currently lacks required headers (like netrom.h)
+    depends on !LIBC_MUSL # Currently lacks required headers (like netrom.h)
     help
       libsanitizer is a library which provides run-time sanitising of either
       or both of:
