@@ -46,6 +46,7 @@ case "${CT_TOOLCHAIN_TYPE}" in
 
                           def_samp_name="${CT_TARGET_ARCH}"
                           def_samp_name="${def_samp_name}${CT_TARGET_VENDOR:+-${CT_TARGET_VENDOR}}"
+                          def_samp_name="${def_samp_name}${CT_TARGET_VENDOR_SAMPLE_REV:+-${CT_TARGET_VENDOR_SAMPLE_REV}}"
                           def_samp_name="${def_samp_name}-${cc_ver}-${kernel_ver}-${libc_ver}"
                           ;;
                     *)    def_samp_name="${CT_TARGET}"
