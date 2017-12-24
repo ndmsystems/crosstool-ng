@@ -95,7 +95,6 @@ do_ncurses_for_target() {
     do_ncurses_backend host="${CT_TARGET}" \
                        prefix="${prefix}" \
                        destdir="${CT_SYSROOT_DIR}" \
-                       shared="${CT_SHARED_LIBS}" \
                        cflags="${CT_TARGET_CFLAGS}" \
                        "${opts[@]}"
     CT_Popd
@@ -109,7 +108,6 @@ fi
 #   prefix        : prefix to install into    : dir       : (none)
 #   cflags        : cflags to use             : string    : (empty)
 #   ldflags       : ldflags to use            : string    : (empty)
-#   shared        : build shared lib          : bool      : n
 #   --*           : passed to configure       : n/a       : n/a
 do_ncurses_backend() {
     local -a ncurses_opts
@@ -117,7 +115,6 @@ do_ncurses_backend() {
     local prefix
     local cflags
     local ldflags
-    local shared
     local arg
     local install_target=install
 
@@ -144,10 +141,6 @@ do_ncurses_backend() {
             ncurses_opts+=("--enable-sp-funcs")
             ;;
     esac
-
-    if [ "${shared}" = "y" ]; then
-        ncurses_opts+=("--with-shared")
-    fi
 
     CT_DoLog EXTRA "Configuring ncurses"
     CT_DoExecLog CFG                                                    \
