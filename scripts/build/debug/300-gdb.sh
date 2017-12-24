@@ -193,7 +193,8 @@ do_debug_gdb_build()
             static_libstdcxx="${CT_GDB_NATIVE_STATIC_LIBSTDCXX}" \
             prefix=/usr \
             destdir="${CT_DEBUGROOT_DIR}" \
-            "${native_extra_config[@]}"
+            "${native_extra_config[@]}" \
+            "${CT_GDB_NATIVE_EXTRA_CONFIG_ARRAY[@]}"
 
         unset ac_cv_func_strncmp_works
 
