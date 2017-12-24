@@ -57,7 +57,6 @@ do_expat_for_target() {
     expat_opts+=( "cflags=${CT_ALL_TARGET_CFLAGS}" )
     expat_opts+=( "prefix=${prefix}" )
     expat_opts+=( "destdir=${CT_SYSROOT_DIR}" )
-    expat_opts+=( "shared=${CT_SHARED_LIBS}" )
 
     do_expat_backend "${expat_opts[@]}"
 
@@ -76,7 +75,6 @@ do_expat_backend() {
     local prefix
     local cflags
     local ldflags
-    local shared
     local arg
     local -a extra_config
 
@@ -84,9 +82,7 @@ do_expat_backend() {
         eval "${arg// /\\ }"
     done
 
-    if [ "${shared}" != "y" ]; then
-        extra_config+=("--disable-shared")
-    fi
+    extra_config+=("--disable-shared")
 
     CT_DoLog EXTRA "Configuring expat"
 
