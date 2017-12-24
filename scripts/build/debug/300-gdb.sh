@@ -288,7 +288,8 @@ do_debug_gdb_build() {
             --disable-werror                            \
             --without-included-gettext                  \
             --without-develop                           \
-            "${native_extra_config[@]}"
+            "${native_extra_config[@]}"                 \
+            "${CT_GDB_NATIVE_EXTRA_CONFIG_ARRAY[@]}"
 
         CT_DoLog EXTRA "Building native gdb"
         CT_DoExecLog ALL make ${JOBSFLAGS}
