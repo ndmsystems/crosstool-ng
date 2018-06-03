@@ -38,7 +38,6 @@ AC_DEFUN(
      rm -rf conftest.dir
      rm -f conftest
     ])
-     
 
 #--------------------------------------------------------------------
 # Allow dummy --{en,dis}able-{static,shared}
