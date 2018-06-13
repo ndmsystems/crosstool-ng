@@ -187,8 +187,8 @@ do_debug_gdb_build()
             buildtype=native \
             subdir=${subdir} \
             host="${CT_TARGET}" \
-            cflags="${CT_ALL_TARGET_CFLAGS}" \
-            ldflags="${CT_ALL_TARGET_LDFLAGS}" \
+            cflags="${CT_ALL_TARGET_CFLAGS} ${CT_GDB_NATIVE_EXTRA_CFLAGS}" \
+            ldflags="${CT_ALL_TARGET_LDFLAGS} ${CT_GDB_NATIVE_EXTRA_LDFLAGS}" \
             static="${CT_GDB_NATIVE_STATIC}" \
             static_libstdcxx="${CT_GDB_NATIVE_STATIC_LIBSTDCXX}" \
             prefix=/usr \
