@@ -229,8 +229,8 @@ do_debug_gdb_build() {
             native_extra_config+=("--disable-nls")
         fi
 
-        native_CFLAGS="${CT_ALL_TARGET_CFLAGS}"
-        native_LDFLAGS="${CT_ALL_TARGET_LDFLAGS}"
+        native_CFLAGS="${CT_ALL_TARGET_CFLAGS} ${CT_GDB_NATIVE_EXTRA_CFLAGS}"
+        native_LDFLAGS="${CT_ALL_TARGET_LDFLAGS} ${CT_GDB_NATIVE_EXTRA_LDFLAGS}"
 
         if [ "${CT_GDB_NATIVE_STATIC}" = "y" ]; then
             native_CFLAGS+=" -static"
