@@ -65,7 +65,7 @@ mkdir -p "${samp_dir}"
 # Tweak the .config file: remove the options that we want to keep
 # at default setting in samples.
 force_default_opts=( \
-    PREFIX_DIR LOG_TO_FILE LOG_FILE_COMPRESS \
+    PREFIX_DIR \
     LOCAL_TARBALLS_DIR SAVE_TARBALLS \
     LOG_ERROR LOG_WARN LOG_INFO LOG_EXTRA LOG_ALL LOG_DEBUG \
     LOG_PROGRESS_BAR
