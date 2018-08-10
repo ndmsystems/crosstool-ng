@@ -171,6 +171,7 @@ do_libc_backend_once() {
         *)  extra_config+=("--enable-add-ons=$(do_libc_add_ons_list ,)");;
     esac
 
+    [ "${CT_GLIBC_ENABLE_WERROR}" != "y" ] && extra_config+=("--disable-werror")
     [ -n "${CT_PKGVERSION}" ] && extra_config+=("--with-pkgversion=${CT_PKGVERSION}")
     [ -n "${CT_TOOLCHAIN_BUGURL}" ] && extra_config+=("--with-bugurl=${CT_TOOLCHAIN_BUGURL}")
 
@@ -196,7 +197,7 @@ do_libc_backend_once() {
     esac
 
     # In the order of increasing precedence. Flags common to compiler and linker.
-    glibc_cflags+=" ${CT_TARGET_CFLAGS}"
+    glibc_cflags+=" ${CT_ALL_TARGET_CFLAGS}"
     glibc_cflags+=" ${CT_GLIBC_EXTRA_CFLAGS}"
     glibc_cflags+=" ${multi_flags}"
 

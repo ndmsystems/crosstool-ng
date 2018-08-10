@@ -115,11 +115,14 @@ cat "${paths_sh_location}" |while read trash line; do
     tool="${line%%=*}"
     # Suppress extra quoting
     eval path=${line#*=}
-    if [ -r "${CT_LIB_DIR}/scripts/override/$tool" ]; then
-       tmpl="${CT_LIB_DIR}/scripts/override/$tool"
-    else
-       tmpl="${CT_LIB_DIR}/scripts/override/__default"
+    if [ ! -r "${CT_LIB_DIR}/scripts/override/$tool" ]; then
+         if [ -n "${path}" ]; then
+             CT_DoExecLog ALL rm -f "${CT_TOOLS_OVERRIDE_DIR}/bin/${tool}"
+             CT_DoExecLog ALL ln -s "${path}" "${CT_TOOLS_OVERRIDE_DIR}/bin/${tool}"
+         fi
+         continue
     fi
+    tmpl="${CT_LIB_DIR}/scripts/override/$tool"
     CT_DoLog DEBUG "Creating script-override for '${tool}' -> '${path}' using '${tmpl}' template"
     CT_DoExecLog ALL cp "${tmpl}" "${CT_TOOLS_OVERRIDE_DIR}/bin/${tool}"
     CT_DoExecLog ALL ${sed} -i -r \
@@ -163,8 +166,8 @@ CT_PREFIX_DIR="$( ${sed} -r -e 's:/+:/:g; s:/*$::;' <<<"${CT_PREFIX_DIR}" )"
 # Second kludge: merge user-supplied target CFLAGS with architecture-provided
 # target CFLAGS. Do the same for LDFLAGS in case it happens in the future.
 # Put user-supplied flags at the end, so that they take precedence.
-CT_TARGET_CFLAGS="${CT_ARCH_TARGET_CFLAGS} ${CT_TARGET_CFLAGS}"
-CT_TARGET_LDFLAGS="${CT_ARCH_TARGET_LDFLAGS} ${CT_TARGET_LDFLAGS}"
+CT_ALL_TARGET_CFLAGS="${CT_ARCH_TARGET_CFLAGS} ${CT_TARGET_CFLAGS}"
+CT_ALL_TARGET_LDFLAGS="${CT_ARCH_TARGET_LDFLAGS} ${CT_TARGET_LDFLAGS}"
 
 # FIXME move to gcc.sh
 CT_CC_GCC_CORE_EXTRA_CONFIG_ARRAY=( ${CT_ARCH_CC_CORE_EXTRA_CONFIG} "${CT_CC_GCC_CORE_EXTRA_CONFIG_ARRAY[@]}" )
