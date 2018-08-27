@@ -131,6 +131,7 @@ do_libc_backend_once() {
         fi
     done
     CT_DoLog DEBUG "Filtered multilib CFLAGS: ${extra_cflags}"
+    extra_cflags+=" ${CT_LIBC_UCLIBC_EXTRA_CFLAGS}"
     make_args+=( UCLIBC_EXTRA_CFLAGS="${extra_cflags}" )
 
     # uClibc does not have a way to select the installation subdirectory for headers,
