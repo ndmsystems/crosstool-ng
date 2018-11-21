@@ -128,8 +128,8 @@ AC_PROG_RANLIB
 CTNG_PATH_TOOL_REQ([OBJCOPY], [gobjcopy objcopy], [objcopy])
 CTNG_PATH_TOOL_REQ([OBJDUMP], [gobjdump objdump], [objdump])
 CTNG_PATH_TOOL_REQ([READELF], [greadelf readelf], [readelf])
+CTNG_PATH_TOOL_REQ([BISON], [bison], [bison])
 
-CTNG_CHECK_PROGS_REQ([bison], [bison])
 CTNG_CHECK_PROGS_REQ([flex], [flex])
 CTNG_CHECK_PROGS_REQ([makeinfo], [makeinfo])
 CTNG_CHECK_PROGS_REQ([cut], [cut])
@@ -140,6 +140,8 @@ CTNG_CHECK_PROGS_REQ([bzip2], [bzip2])
 CTNG_CHECK_PROGS_REQ([xz], [xz])
 CTNG_CHECK_PROGS_REQ([unzip], [unzip])
 CTNG_CHECK_PROGS_REQ([help2man], [help2man])
+CTNG_CHECK_PROGS_REQ([file], [file])
+CTNG_CHECK_PROGS_REQ([which], [which])
 
 # Not a fatal failure even if we have neither - the tarballs may
 # be provided in a local directory.
@@ -186,14 +188,14 @@ CTNG_PROG_VERSION_REQ_ANY([MAKE],
     [make_3_81_or_newer])
 
 # Check other companion tools that we may or may not build.
-CTNG_PROG_VERSION_REQ_STRICT([LIBTOOL],
+CTNG_PROG_VERSION_REQ_ANY([LIBTOOL],
     [GNU libtool >= 2.4],
     [libtool],
     [glibtool libtool],
     [\(GNU libtool\) ([3-9]\.|2.[4-9]|2.[1-3][0-9])],
     [libtool_2_4_or_newer])
 
-CTNG_PROG_VERSION([LIBTOOLIZE],
+CTNG_PROG_VERSION_REQ_ANY([LIBTOOLIZE],
     [GNU libtoolize >= 2.4],
     [libtoolize],
     [glibtoolize libtoolize],

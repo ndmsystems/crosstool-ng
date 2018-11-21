@@ -65,10 +65,12 @@ bash-completion/ct-ng: bash-completion/ct-ng.in Makefile
 install-data-hook:
 	rm -f $(DESTDIR)$(man1dir)/$(ctng_progname).1.gz
 	gzip -9 $(DESTDIR)$(man1dir)/$(ctng_progname).1
-	chmod +x $(DESTDIR)$(pkgdatadir)/scripts/config.guess
-	chmod +x $(DESTDIR)$(pkgdatadir)/scripts/config.sub
+	chmod a+x $(DESTDIR)$(pkgdatadir)/scripts/config.guess
+	chmod a+x $(DESTDIR)$(pkgdatadir)/scripts/config.sub
+	rm -f $(DESTDIR)$(pkgdatadir)/LICENSE
+	ln -s COPYING $(DESTDIR)$(pkgdatadir)/LICENSE
 if INSTALL_BASH_COMPLETION
-	chmod -x $(DESTDIR)$(compdir)/$(ctng_progname)
+	chmod a-x $(DESTDIR)$(compdir)/$(ctng_progname)
 endif
 
 uninstall-hook:
@@ -83,3 +85,16 @@ fetch-docs: maintainer/download-docs.sh
 .PHONY: gen-tarball-version
 gen-tarball-version:
 	echo $(VERSION) > $(distdir)/.tarball-version
+
+DIGESTS		= md5 sha1 sha512
+USE_GPG		= yes
+
+dist-create-release: distcheck
+	for a in $(DIST_ARCHIVES); do \
+		for d in $(DIGESTS); do \
+			$${d}sum $${a} > $${a}.$${d}; \
+		done; \
+		if [ "$(USE_GPG)" = "yes" ]; then \
+			gpg --detach-sign $${a}; \
+		fi; \
+	done

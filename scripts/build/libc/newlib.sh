@@ -38,7 +38,7 @@ do_libc() {
 
     # Multilib is the default, so if it is not enabled, disable it.
     if [ "${CT_MULTILIB}" != "y" ]; then
-        extra_config+=("--disable-multilib")
+        newlib_opts+=("--disable-multilib")
     fi
 
     if [ "${CT_LIBC_NEWLIB_IO_FLOAT}" = "y" ]; then
@@ -65,13 +65,13 @@ IO_LL:newlib-io-long-long
 NEWLIB_REGISTER_FINI:newlib-register-fini
 NANO_MALLOC:newlib-nano-malloc
 NANO_FORMATTED_IO:newlib-nano-formatted-io
-ATEXIT_DYNAMIC_ALLOC:atexit-dynamic-alloc
+ATEXIT_DYNAMIC_ALLOC:newlib-atexit-dynamic-alloc
 GLOBAL_ATEXIT:newlib-global-atexit
 LITE_EXIT:lite-exit
-REENT_SMALL:reent-small
-MULTITHREAD:multithread
+REENT_SMALL:newlib-reent-small
+MULTITHREAD:newlib-multithread
 WIDE_ORIENT:newlib-wide-orient
-UNBUF_STREAM_OPT:unbuf-stream-opt
+UNBUF_STREAM_OPT:newlib-unbuf-stream-opt
 ENABLE_TARGET_OPTSPACE:target-optspace
     "
 

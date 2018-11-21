@@ -53,7 +53,7 @@ Date:   Wed Jul 29 11:28:29 2015 +0300
  	esac
  	aarch64_multilibs="${with_multilib_list}"
  	if test "$aarch64_multilibs" = "default"; then
-@@ -2128,6 +2132,17 @@
+@@ -2130,6 +2134,17 @@
  	tm_file="dbxelf.h elfos.h gnu-user.h linux.h linux-android.h glibc-stdint.h ${tm_file} mips/gnu-user.h mips/linux.h mips/linux-common.h"
  	extra_options="${extra_options} linux-android.opt"
  	case ${target} in
@@ -446,7 +446,7 @@ Date:   Wed Jul 29 11:28:29 2015 +0300
  #if ((defined(_LIBOBJC) || defined(_LIBOBJC_WEAK)) \
 --- a/libstdc++-v3/configure
 +++ b/libstdc++-v3/configure
-@@ -78478,6 +78478,18 @@
+@@ -78491,6 +78491,18 @@
  /* end confdefs.h.  */
  #include <sys/syscall.h>
  	   int lk;

@@ -350,12 +350,11 @@ do_gcc_core_backend() {
             ;;
     esac
 
-    # This is only needed when building libstdc++ in a canadian environment with
-    # this function being used for final step (i.e., when building for bare metal).
-    if [ "${build_step}" = "gcc_build" ]; then
-        CT_DoLog DEBUG "Copying headers to install area of core C compiler"
-        CT_DoExecLog ALL cp -a "${CT_HEADERS_DIR}" "${prefix}/${CT_TARGET}/include"
-    fi
+    case "${build_step}" in
+        core2|gcc_build)
+            CT_DoLog DEBUG "Copying headers to install area of core C compiler"
+            CT_DoExecLog ALL cp -a "${CT_HEADERS_DIR}" "${prefix}/${CT_TARGET}/include"
+    esac
 
     for tmp in ARCH ABI CPU TUNE FPU FLOAT ENDIAN; do
         eval tmp="\${CT_ARCH_WITH_${tmp}}"
@@ -468,7 +467,11 @@ do_gcc_core_backend() {
         local glibc_version
 
         CT_GetPkgVersion GLIBC glibc_version
-        glibc_version=`echo "${glibc_version}" | sed 's/\([1-9][0-9]*\.[1-9][0-9]*\).*/\1/'`
+        case "${glibc_version}" in
+        new) glibc_version=99.99;;
+        old) glibc_version=1.0;;
+        *) glibc_version=`echo "${glibc_version}" | sed 's/\([1-9][0-9]*\.[1-9][0-9]*\).*/\1/'`;;
+        esac
         extra_config+=("--with-glibc-version=${glibc_version}")
     fi
 
