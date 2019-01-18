@@ -205,7 +205,7 @@ index a915d37..a6ad8db 100644
  # include <sys/procfs.h>
  #endif
  #include <sys/user.h>
-+#if defined(__GLIBC__) && !__GLIBC_PREREQ(2, 28)
++#if !defined(__UCLIBC__) && !__GLIBC_PREREQ(2, 28)
 + #include <sys/ustat.h>
 +#endif
  #include <linux/cyclades.h>
