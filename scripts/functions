@@ -2361,6 +2361,12 @@ CT_GetPkgBuildVersion()
         if [ "${src_devel}" = "y" ]; then
             if [ -n "${devel_revision}" ]; then
                 tmp+="-${devel_revision}"
+            elif [ -n "${devel_branch}" ]; then
+                if [ "${devel_vcs}" = "git" ]; then
+		    tmp+="-${devel_branch#refs/heads/}"
+                else
+		    tmp+="-${devel_branch}"
+                fi
             fi
         elif [ "${src_custom}" = "y" ]; then
             tmp+="-${version}-custom"
