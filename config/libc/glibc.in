@@ -246,17 +246,16 @@ config GLIBC_LOCALES
       Whether to build and install the libc locale files for the target,
       which is required in order to support internationalization.
 
-if LIBC_GLIBC && GLIBC_LOCALES
-comment "WARNING!                                                      "
-comment "|  The built locales will be usable if and only if the build  "
-comment "|  machine and the target:                                    "
-comment "|   - have the same endianness,                               "
-comment "|   - and have the same alignment requirements for uint32_t.  "
-comment "|  You will have to check by yourself (for now).              "
-comment "WARNING!                                                      "
-comment "|  Building GLIBC locales requires that GLIBC supports        "
-comment "|  the build machine as the target.                           "
-endif # LIBC_GLIBC && GLIBC_LOCALES
+config GLIBC_LOCALES_LIST
+    string
+    prompt "List of locales"
+    default ""
+    depends on GLIBC_LOCALES
+    help
+      Whitespace-separated list of locales.
+      Leave empty to build all locales.
+
+      See localedata/SUPPORTED file in glibc sources.
 
 if KERNEL_LINUX
 

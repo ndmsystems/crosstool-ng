@@ -484,6 +484,8 @@ glibc_locales()
     local src_dir="${CT_SRC_DIR}/glibc"
     local -a extra_config
     local glibc_cflags
+    local localedef_flags
+    local supported_locales
 
     # To build locales, we'd need to build glibc for the build machine.
     # Bail out if the host is not supported.
@@ -548,14 +550,20 @@ glibc_locales()
     CT_DoLog EXTRA "Building C library localedef"
     CT_DoExecLog ALL make ${CT_JOBSFLAGS}
 
-    # The target's endianness and uint32_t alignment should be passed as options
-    # to localedef, but glibc's localedef does not support these options, which
-    # means that the locale files generated here will be suitable for the target
-    # only if it has the same endianness and uint32_t alignment as the host's.
+    case "${CT_ARCH_ENDIAN}" in
+        big)    localedef_flags="--big-endian";;
+        little) localedef_flags="--little-endian";;
+    esac
+
+    if [ -n "${CT_GLIBC_LOCALES_LIST}" ]; then
+        supported_locales="${CT_GLIBC_LOCALES_LIST}"
+    fi
 
     CT_DoLog EXTRA "Installing C library locales"
-    CT_DoExecLog ALL make ${CT_JOBSFLAGS}                  \
-                          install_root="${CT_SYSROOT_DIR}" \
+    CT_DoExecLog ALL make ${CT_JOBSFLAGS}                                                \
+                          ${localedef_flags:+LOCALEDEF_FLAGS=${localedef_flags}}         \
+                          ${supported_locales:+SUPPORTED-LOCALES="${supported_locales}"} \
+                          install_root="${CT_SYSROOT_DIR}"                               \
                           localedata/install-locales
 }
 
