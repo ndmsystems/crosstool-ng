@@ -1,0 +1,29 @@
+---
+ time/tzset.c |    9 +--------
+ 1 file changed, 1 insertion(+), 8 deletions(-)
+
+--- a/time/tzset.c
++++ b/time/tzset.c
+@@ -390,10 +390,6 @@
+     /* No change, simply return.  */
+     return;
+ 
+-  if (tz == NULL)
+-    /* No user specification; use the site-wide default.  */
+-    tz = TZDEFAULT;
+-
+   tz_rules[0].name = NULL;
+   tz_rules[1].name = NULL;
+ 
+@@ -571,10 +567,7 @@
+ 
+   __libc_lock_lock (tzset_lock);
+ 
+-  /* Update internal database according to current TZ setting.
+-     POSIX.1 8.3.7.2 says that localtime_r is not required to set tzname.
+-     This is a good idea since this allows at least a bit more parallelism.  */
+-  tzset_internal (tp == &_tmbuf && use_localtime);
++  tzset_internal (1);
+ 
+   if (__use_tzfile)
+     __tzfile_compute (timer, use_localtime, &leap_correction,
