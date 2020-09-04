@@ -23,7 +23,7 @@
 -     POSIX.1 8.3.7.2 says that localtime_r is not required to set tzname.
 -     This is a good idea since this allows at least a bit more parallelism.  */
 -  tzset_internal (tp == &_tmbuf && use_localtime);
-+  tzset_internal (1);
++  tzset_internal (use_localtime);
  
    if (__use_tzfile)
      __tzfile_compute (timer, use_localtime, &leap_correction,
