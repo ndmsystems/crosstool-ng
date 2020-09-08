@@ -6,6 +6,16 @@ do_debug_ltrace_get() {
 
 do_debug_ltrace_extract() {
     CT_ExtractPatch LTRACE
+
+    CT_Pushd "${CT_SRC_DIR}/ltrace"
+
+    if [ ! -f .autoreconf.ct-ng ]; then
+	CT_DoLog DEBUG "Running autoreconf"
+	CT_DoExecLog ALL autoreconf -i
+	touch .autoreconf.ct-ng
+    fi
+
+    CT_Popd
 }
 
 do_debug_ltrace_build() {
