@@ -8,11 +8,13 @@ Also happens to reduce compressed code size a bit
 
 Signed-off-by: Felix Fietkau <nbd@nbd.name>
 
-diff --git a/gcc/config/mips/mips.c b/gcc/config/mips/mips.c
-index 513fc5fe2..b4c8d6741 100644
+---
+ gcc/config/mips/mips.c |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
 --- a/gcc/config/mips/mips.c
 +++ b/gcc/config/mips/mips.c
-@@ -20035,7 +20035,7 @@ mips_option_override (void)
+@@ -20035,7 +20035,7 @@
      flag_pcc_struct_return = 0;
  
    /* Decide which rtx_costs structure to use.  */

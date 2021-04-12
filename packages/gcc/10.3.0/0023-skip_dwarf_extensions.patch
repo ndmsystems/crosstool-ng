@@ -1,8 +1,10 @@
-diff --git a/libgcc/unwind-dw2-fde.h b/libgcc/unwind-dw2-fde.h
-index 706b6f618..1da315248 100644
+---
+ libgcc/unwind-dw2-fde.h |    3 +++
+ 1 file changed, 3 insertions(+)
+
 --- a/libgcc/unwind-dw2-fde.h
 +++ b/libgcc/unwind-dw2-fde.h
-@@ -168,6 +168,9 @@ extern const fde * _Unwind_Find_FDE (void *, struct dwarf_eh_bases *);
+@@ -168,6 +168,9 @@
  static inline int
  last_fde (struct object *obj __attribute__ ((__unused__)), const fde *f)
  {

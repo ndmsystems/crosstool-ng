@@ -1,8 +1,12 @@
-diff --git a/gcc/config/mips/linux-common.h b/gcc/config/mips/linux-common.h
-index f84059bf2..ed767f8cc 100644
+---
+ gcc/config/mips/linux-common.h |    9 ++++++---
+ gcc/config/mips/linux.h        |    6 ++++++
+ libsanitizer/configure.tgt     |    2 ++
+ 3 files changed, 14 insertions(+), 3 deletions(-)
+
 --- a/gcc/config/mips/linux-common.h
 +++ b/gcc/config/mips/linux-common.h
-@@ -30,6 +30,9 @@ along with GCC; see the file COPYING3.  If not see
+@@ -30,6 +30,9 @@
  #define EXTRA_TARGET_D_OS_VERSIONS()				\
    ANDROID_TARGET_D_OS_VERSIONS();
  
@@ -12,7 +16,7 @@ index f84059bf2..ed767f8cc 100644
  #undef  LINK_SPEC
  #define LINK_SPEC							\
    LINUX_OR_ANDROID_LD (GNU_USER_TARGET_LINK_SPEC,			\
-@@ -37,12 +40,12 @@ along with GCC; see the file COPYING3.  If not see
+@@ -37,12 +40,12 @@
  
  #undef  SUBTARGET_CC1_SPEC
  #define SUBTARGET_CC1_SPEC						\
@@ -28,11 +32,9 @@ index f84059bf2..ed767f8cc 100644
  
  #undef  LIB_SPEC
  #define LIB_SPEC							\
-diff --git a/gcc/config/mips/linux.h b/gcc/config/mips/linux.h
-index 54446e58e..66b26d7df 100644
 --- a/gcc/config/mips/linux.h
 +++ b/gcc/config/mips/linux.h
-@@ -51,6 +51,12 @@ along with GCC; see the file COPYING3.  If not see
+@@ -51,6 +51,12 @@
    CHOOSE_DYNAMIC_LINKER (GLIBC_DYNAMIC_LINKERN32, UCLIBC_DYNAMIC_LINKERN32, \
                           BIONIC_DYNAMIC_LINKERN32, MUSL_DYNAMIC_LINKERN32)
  
@@ -45,11 +47,9 @@ index 54446e58e..66b26d7df 100644
  #undef NEED_INDICATE_EXEC_STACK
  
  #ifdef TARGET_LIBC_GNUSTACK
-diff --git a/libsanitizer/configure.tgt b/libsanitizer/configure.tgt
-index 5d46990eb..e490328fb 100644
 --- a/libsanitizer/configure.tgt
 +++ b/libsanitizer/configure.tgt
-@@ -45,6 +45,8 @@ case "${target}" in
+@@ -45,6 +45,8 @@
    arm*-*-*fdpiceabi)
  	UNSUPPORTED=1
  	;;

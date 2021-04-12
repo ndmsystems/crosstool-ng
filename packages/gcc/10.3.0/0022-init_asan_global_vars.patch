@@ -1,8 +1,10 @@
-diff --git a/libsanitizer/asan/asan_rtl.cpp b/libsanitizer/asan/asan_rtl.cpp
-index 594d7752e..bb47d9021 100644
+---
+ libsanitizer/asan/asan_rtl.cpp |    4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
 --- a/libsanitizer/asan/asan_rtl.cpp
 +++ b/libsanitizer/asan/asan_rtl.cpp
-@@ -77,8 +77,8 @@ static void AsanCheckFailed(const char *file, int line, const char *cond,
+@@ -77,8 +77,8 @@
  }
  
  // -------------------------- Globals --------------------- {{{1

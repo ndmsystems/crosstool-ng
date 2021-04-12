@@ -1,5 +1,8 @@
-diff --git a/libsanitizer/sanitizer_common/sanitizer_platform.h b/libsanitizer/sanitizer_common/sanitizer_platform.h
-index c68bfa258..6012705a5 100644
+---
+ libsanitizer/sanitizer_common/sanitizer_platform.h              |    9 +++++++++
+ libsanitizer/sanitizer_common/sanitizer_platform_limits_posix.h |    2 +-
+ 2 files changed, 10 insertions(+), 1 deletion(-)
+
 --- a/libsanitizer/sanitizer_common/sanitizer_platform.h
 +++ b/libsanitizer/sanitizer_common/sanitizer_platform.h
 @@ -134,6 +134,15 @@
@@ -18,11 +21,9 @@ index c68bfa258..6012705a5 100644
  # if defined(__mips64)
  #  define SANITIZER_MIPS32 0
  #  define SANITIZER_MIPS64 1
-diff --git a/libsanitizer/sanitizer_common/sanitizer_platform_limits_posix.h b/libsanitizer/sanitizer_common/sanitizer_platform_limits_posix.h
-index faeb5c159..9942bef93 100644
 --- a/libsanitizer/sanitizer_common/sanitizer_platform_limits_posix.h
 +++ b/libsanitizer/sanitizer_common/sanitizer_platform_limits_posix.h
-@@ -93,7 +93,7 @@ const unsigned struct_kernel_stat64_sz = 104;
+@@ -93,7 +93,7 @@
  #else
  const unsigned struct_kernel_stat_sz = SANITIZER_ANDROID
                                             ? FIRST_32_SECOND_64(104, 128)

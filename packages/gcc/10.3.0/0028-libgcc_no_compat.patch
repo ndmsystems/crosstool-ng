@@ -8,8 +8,10 @@ Date:   Sun May 10 13:16:35 2015 +0000
     
     SVN-Revision: 45664
 
-diff --git a/libgcc/config/t-libunwind b/libgcc/config/t-libunwind
-index 5244928da..e32277bb9 100644
+---
+ libgcc/config/t-libunwind |    3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
 --- a/libgcc/config/t-libunwind
 +++ b/libgcc/config/t-libunwind
 @@ -2,8 +2,7 @@

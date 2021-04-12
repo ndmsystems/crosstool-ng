@@ -1,8 +1,10 @@
-diff --git a/libgcc/Makefile.in b/libgcc/Makefile.in
-index ed51a2cb5..b0cc36d49 100644
+---
+ libgcc/Makefile.in |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
 --- a/libgcc/Makefile.in
 +++ b/libgcc/Makefile.in
-@@ -42,7 +42,7 @@ long_double_type_size = @long_double_type_size@
+@@ -42,7 +42,7 @@
  decimal_float = @decimal_float@
  enable_vtable_verify = @enable_vtable_verify@
  enable_decimal_float = @enable_decimal_float@

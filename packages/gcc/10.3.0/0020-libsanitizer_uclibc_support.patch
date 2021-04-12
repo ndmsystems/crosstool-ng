@@ -1,6 +1,18 @@
-diff --git a/libbacktrace/getpagesize.h b/libbacktrace/getpagesize.h
-new file mode 100644
-index 000000000..2a713e2a7
+---
+ libbacktrace/getpagesize.h                                        |   42 +++++++++
+ libbacktrace/mmap.c                                               |    1 
+ libbacktrace/mmapio.c                                             |    1 
+ libsanitizer/asan/asan_linux.cpp                                  |    3 
+ libsanitizer/interception/interception_linux.cpp                  |    2 
+ libsanitizer/interception/interception_linux.h                    |    6 +
+ libsanitizer/sanitizer_common/sanitizer_common_syscalls.inc       |    4 
+ libsanitizer/sanitizer_common/sanitizer_linux.cpp                 |    1 
+ libsanitizer/sanitizer_common/sanitizer_platform_interceptors.h   |    2 
+ libsanitizer/sanitizer_common/sanitizer_platform_limits_linux.cpp |    2 
+ libsanitizer/sanitizer_common/sanitizer_platform_limits_posix.cpp |   23 ++++-
+ libsanitizer/sanitizer_common/sanitizer_platform_limits_posix.h   |   44 +++++++++-
+ 12 files changed, 119 insertions(+), 12 deletions(-)
+
 --- /dev/null
 +++ b/libbacktrace/getpagesize.h
 @@ -0,0 +1,42 @@
@@ -46,11 +58,9 @@ index 000000000..2a713e2a7
 +#endif
 +
 +#endif
-diff --git a/libbacktrace/mmap.c b/libbacktrace/mmap.c
-index dd7d519cc..eec5523c3 100644
 --- a/libbacktrace/mmap.c
 +++ b/libbacktrace/mmap.c
-@@ -41,6 +41,7 @@ POSSIBILITY OF SUCH DAMAGE.  */
+@@ -41,6 +41,7 @@
  
  #include "backtrace.h"
  #include "internal.h"
@@ -58,11 +68,9 @@ index dd7d519cc..eec5523c3 100644
  
  /* Memory allocation on systems that provide anonymous mmap.  This
     permits the backtrace functions to be invoked from a signal
-diff --git a/libbacktrace/mmapio.c b/libbacktrace/mmapio.c
-index 5dd39525b..0c1b15996 100644
 --- a/libbacktrace/mmapio.c
 +++ b/libbacktrace/mmapio.c
-@@ -39,6 +39,7 @@ POSSIBILITY OF SUCH DAMAGE.  */
+@@ -39,6 +39,7 @@
  
  #include "backtrace.h"
  #include "internal.h"
@@ -70,8 +78,6 @@ index 5dd39525b..0c1b15996 100644
  
  #ifndef MAP_FAILED
  #define MAP_FAILED ((void *)-1)
-diff --git a/libsanitizer/asan/asan_linux.cpp b/libsanitizer/asan/asan_linux.cpp
-index ce5e873dc..40c2c6b13 100644
 --- a/libsanitizer/asan/asan_linux.cpp
 +++ b/libsanitizer/asan/asan_linux.cpp
 @@ -24,6 +24,7 @@
@@ -82,7 +88,7 @@ index ce5e873dc..40c2c6b13 100644
  #include <sys/time.h>
  #include <sys/resource.h>
  #include <sys/mman.h>
-@@ -138,7 +139,7 @@ void AsanApplyToGlobals(globals_op_fptr op, const void *needle) {
+@@ -138,7 +139,7 @@
    UNIMPLEMENTED();
  }
  
@@ -91,11 +97,9 @@ index ce5e873dc..40c2c6b13 100644
  // FIXME: should we do anything for Android?
  void AsanCheckDynamicRTPrereqs() {}
  void AsanCheckIncompatibleRT() {}
-diff --git a/libsanitizer/interception/interception_linux.cpp b/libsanitizer/interception/interception_linux.cpp
-index 950cd5126..dc8e371ca 100644
 --- a/libsanitizer/interception/interception_linux.cpp
 +++ b/libsanitizer/interception/interception_linux.cpp
-@@ -64,7 +64,7 @@ bool InterceptFunction(const char *name, uptr *ptr_to_real, uptr func,
+@@ -64,7 +64,7 @@
  }
  
  // Android and Solaris do not have dlvsym
@@ -104,8 +108,6 @@ index 950cd5126..dc8e371ca 100644
  static void *GetFuncAddr(const char *name, const char *ver) {
    return dlvsym(RTLD_NEXT, name, ver);
  }
-diff --git a/libsanitizer/interception/interception_linux.h b/libsanitizer/interception/interception_linux.h
-index e578da0cf..a047d81f6 100644
 --- a/libsanitizer/interception/interception_linux.h
 +++ b/libsanitizer/interception/interception_linux.h
 @@ -21,6 +21,10 @@
@@ -119,7 +121,7 @@ index e578da0cf..a047d81f6 100644
  namespace __interception {
  bool InterceptFunction(const char *name, uptr *ptr_to_real, uptr func,
                         uptr wrapper);
-@@ -36,7 +40,7 @@ bool InterceptFunction(const char *name, const char *ver, uptr *ptr_to_real,
+@@ -36,7 +40,7 @@
        (::__interception::uptr) & WRAP(func))
  
  // Android,  Solaris and OpenBSD do not have dlvsym
@@ -128,11 +130,9 @@ index e578da0cf..a047d81f6 100644
  #define INTERCEPT_FUNCTION_VER_LINUX_OR_FREEBSD(func, symver) \
    ::__interception::InterceptFunction(                        \
        #func, symver,                                          \
-diff --git a/libsanitizer/sanitizer_common/sanitizer_common_syscalls.inc b/libsanitizer/sanitizer_common/sanitizer_common_syscalls.inc
-index 31ff48cfd..f75942ada 100644
 --- a/libsanitizer/sanitizer_common/sanitizer_common_syscalls.inc
 +++ b/libsanitizer/sanitizer_common/sanitizer_common_syscalls.inc
-@@ -922,7 +922,7 @@ POST_SYSCALL(newfstat)(long res, long fd, void *statbuf) {
+@@ -922,7 +922,7 @@
    }
  }
  
@@ -141,7 +141,7 @@ index 31ff48cfd..f75942ada 100644
  PRE_SYSCALL(ustat)(long dev, void *ubuf) {}
  
  POST_SYSCALL(ustat)(long res, long dev, void *ubuf) {
-@@ -930,7 +930,7 @@ POST_SYSCALL(ustat)(long res, long dev, void *ubuf) {
+@@ -930,7 +930,7 @@
      if (ubuf) POST_WRITE(ubuf, struct_ustat_sz);
    }
  }
@@ -150,8 +150,6 @@ index 31ff48cfd..f75942ada 100644
  
  PRE_SYSCALL(stat64)(const void *filename, void *statbuf) {
    if (filename)
-diff --git a/libsanitizer/sanitizer_common/sanitizer_linux.cpp b/libsanitizer/sanitizer_common/sanitizer_linux.cpp
-index 3807a79b1..f78f7d554 100644
 --- a/libsanitizer/sanitizer_common/sanitizer_linux.cpp
 +++ b/libsanitizer/sanitizer_common/sanitizer_linux.cpp
 @@ -47,6 +47,7 @@
@@ -162,8 +160,6 @@ index 3807a79b1..f78f7d554 100644
  #include <sched.h>
  #include <signal.h>
  #include <sys/mman.h>
-diff --git a/libsanitizer/sanitizer_common/sanitizer_platform_interceptors.h b/libsanitizer/sanitizer_common/sanitizer_platform_interceptors.h
-index 61a6b82ef..db8a650d0 100644
 --- a/libsanitizer/sanitizer_common/sanitizer_platform_interceptors.h
 +++ b/libsanitizer/sanitizer_common/sanitizer_platform_interceptors.h
 @@ -567,7 +567,7 @@
@@ -175,8 +171,6 @@ index 61a6b82ef..db8a650d0 100644
  
  #define SANITIZER_INTERCEPT_GETRANDOM \
    ((SI_LINUX && __GLIBC_PREREQ(2, 25)) || SI_FREEBSD)
-diff --git a/libsanitizer/sanitizer_common/sanitizer_platform_limits_linux.cpp b/libsanitizer/sanitizer_common/sanitizer_platform_limits_linux.cpp
-index f22f50391..22d3f9652 100644
 --- a/libsanitizer/sanitizer_common/sanitizer_platform_limits_linux.cpp
 +++ b/libsanitizer/sanitizer_common/sanitizer_platform_limits_linux.cpp
 @@ -31,7 +31,7 @@
@@ -188,8 +182,6 @@ index f22f50391..22d3f9652 100644
  #include <sys/stat.h>
  #else
  #define ino_t __kernel_ino_t
-diff --git a/libsanitizer/sanitizer_common/sanitizer_platform_limits_posix.cpp b/libsanitizer/sanitizer_common/sanitizer_platform_limits_posix.cpp
-index aa845df4d..6996b8aa9 100644
 --- a/libsanitizer/sanitizer_common/sanitizer_platform_limits_posix.cpp
 +++ b/libsanitizer/sanitizer_common/sanitizer_platform_limits_posix.cpp
 @@ -13,6 +13,10 @@
@@ -213,7 +205,7 @@ index aa845df4d..6996b8aa9 100644
  #include <sys/mount.h>
  #include <sys/timeb.h>
  #include <utmpx.h>
-@@ -116,7 +122,9 @@ typedef struct user_fpregs elf_fpregset_t;
+@@ -116,7 +122,9 @@
  #include <net/if_ppp.h>
  #include <netax25/ax25.h>
  #include <netipx/ipx.h>
@@ -223,7 +215,7 @@ index aa845df4d..6996b8aa9 100644
  #if HAVE_RPC_XDR_H
  # include <rpc/xdr.h>
  #endif
-@@ -130,6 +138,9 @@ typedef struct user_fpregs elf_fpregset_t;
+@@ -130,6 +138,9 @@
  # include <sys/procfs.h>
  #endif
  #include <sys/user.h>
@@ -233,7 +225,7 @@ index aa845df4d..6996b8aa9 100644
  #include <linux/cyclades.h>
  #include <linux/if_eql.h>
  #include <linux/if_plip.h>
-@@ -200,12 +211,12 @@ namespace __sanitizer {
+@@ -200,12 +211,12 @@
    unsigned struct_statfs64_sz = sizeof(struct statfs64);
  #endif // SANITIZER_MAC && !SANITIZER_IOS
  
@@ -248,7 +240,7 @@ index aa845df4d..6996b8aa9 100644
  
  #if SANITIZER_LINUX
    unsigned struct_epoll_event_sz = sizeof(struct epoll_event);
-@@ -241,7 +252,9 @@ namespace __sanitizer {
+@@ -241,7 +252,9 @@
    unsigned struct_ustat_sz = SIZEOF_STRUCT_USTAT;
    unsigned struct_rlimit64_sz = sizeof(struct rlimit64);
    unsigned struct_statvfs64_sz = sizeof(struct statvfs64);
@@ -258,7 +250,7 @@ index aa845df4d..6996b8aa9 100644
  #endif // SANITIZER_LINUX && !SANITIZER_ANDROID
  
  #if SANITIZER_LINUX && !SANITIZER_ANDROID
-@@ -455,7 +468,9 @@ unsigned struct_ElfW_Phdr_sz = sizeof(Elf_Phdr);
+@@ -455,7 +468,9 @@
    unsigned struct_kbkeycode_sz = sizeof(struct kbkeycode);
    unsigned struct_kbsentry_sz = sizeof(struct kbsentry);
    unsigned struct_mtconfiginfo_sz = sizeof(struct mtconfiginfo);
@@ -268,7 +260,7 @@ index aa845df4d..6996b8aa9 100644
    unsigned struct_scc_modem_sz = sizeof(struct scc_modem);
    unsigned struct_scc_stat_sz = sizeof(struct scc_stat);
    unsigned struct_serial_multiport_struct_sz
-@@ -889,10 +904,12 @@ unsigned struct_ElfW_Phdr_sz = sizeof(Elf_Phdr);
+@@ -889,10 +904,12 @@
    unsigned IOCTL_SIOCAX25SETPARMS = SIOCAX25SETPARMS;
    unsigned IOCTL_SIOCDEVPLIP = SIOCDEVPLIP;
    unsigned IOCTL_SIOCIPXCFGDATA = SIOCIPXCFGDATA;
@@ -281,7 +273,7 @@ index aa845df4d..6996b8aa9 100644
    unsigned IOCTL_TIOCGSERIAL = TIOCGSERIAL;
    unsigned IOCTL_TIOCSERGETMULTI = TIOCSERGETMULTI;
    unsigned IOCTL_TIOCSERSETMULTI = TIOCSERSETMULTI;
-@@ -1227,7 +1244,7 @@ COMPILER_CHECK(__sanitizer_XDR_DECODE == XDR_DECODE);
+@@ -1227,7 +1244,7 @@
  COMPILER_CHECK(__sanitizer_XDR_FREE == XDR_FREE);
  #endif
  
@@ -290,8 +282,6 @@ index aa845df4d..6996b8aa9 100644
  COMPILER_CHECK(sizeof(__sanitizer_FILE) <= sizeof(FILE));
  CHECK_SIZE_AND_OFFSET(FILE, _flags);
  CHECK_SIZE_AND_OFFSET(FILE, _IO_read_ptr);
-diff --git a/libsanitizer/sanitizer_common/sanitizer_platform_limits_posix.h b/libsanitizer/sanitizer_common/sanitizer_platform_limits_posix.h
-index d82fd5e40..faeb5c159 100644
 --- a/libsanitizer/sanitizer_common/sanitizer_platform_limits_posix.h
 +++ b/libsanitizer/sanitizer_common/sanitizer_platform_limits_posix.h
 @@ -19,6 +19,10 @@
@@ -305,7 +295,7 @@ index d82fd5e40..faeb5c159 100644
  #if defined(__sparc__)
  // FIXME: This can't be included from tsan which does not support sparc yet.
  #include "sanitizer_glibc_version.h"
-@@ -80,9 +84,17 @@ const unsigned struct_kernel_stat64_sz = 104;
+@@ -80,9 +84,17 @@
  const unsigned struct_kernel_stat_sz = 144;
  const unsigned struct_kernel_stat64_sz = 104;
  #elif defined(__mips__)
@@ -323,7 +313,7 @@ index d82fd5e40..faeb5c159 100644
  const unsigned struct_kernel_stat64_sz = 104;
  #elif defined(__s390__) && !defined(__s390x__)
  const unsigned struct_kernel_stat_sz = 64;
-@@ -191,7 +203,9 @@ struct __sanitizer_struct_mallinfo {
+@@ -191,7 +203,9 @@
    int v[10];
  };
  
@@ -333,7 +323,7 @@ index d82fd5e40..faeb5c159 100644
  extern unsigned struct_rlimit64_sz;
  extern unsigned struct_statvfs64_sz;
  
-@@ -552,11 +566,23 @@ typedef unsigned long __sanitizer_sigset_t;
+@@ -552,11 +566,23 @@
  #elif SANITIZER_MAC
  typedef unsigned __sanitizer_sigset_t;
  #elif SANITIZER_LINUX
@@ -357,7 +347,7 @@ index d82fd5e40..faeb5c159 100644
  
  struct __sanitizer_siginfo {
    // The size is determined by looking at sizeof of real siginfo_t on linux.
-@@ -598,7 +624,17 @@ struct __sanitizer_sigaction {
+@@ -598,7 +624,17 @@
    uptr sa_flags;
    void (*sa_restorer)();
  };
@@ -376,7 +366,7 @@ index d82fd5e40..faeb5c159 100644
  struct __sanitizer_sigaction {
  #if defined(__mips__) && !SANITIZER_FREEBSD
    unsigned int sa_flags;
-@@ -770,7 +806,7 @@ struct __sanitizer_wordexp_t {
+@@ -770,7 +806,7 @@
    uptr we_offs;
  };
  
@@ -385,7 +375,7 @@ index d82fd5e40..faeb5c159 100644
  struct __sanitizer_FILE {
    int _flags;
    char *_IO_read_ptr;
-@@ -982,7 +1018,9 @@ extern unsigned struct_kbentry_sz;
+@@ -982,7 +1018,9 @@
  extern unsigned struct_kbkeycode_sz;
  extern unsigned struct_kbsentry_sz;
  extern unsigned struct_mtconfiginfo_sz;
@@ -395,7 +385,7 @@ index d82fd5e40..faeb5c159 100644
  extern unsigned struct_scc_modem_sz;
  extern unsigned struct_scc_stat_sz;
  extern unsigned struct_serial_multiport_struct_sz;
-@@ -1393,10 +1431,12 @@ extern unsigned IOCTL_SIOCAX25NOUID;
+@@ -1393,10 +1431,12 @@
  extern unsigned IOCTL_SIOCAX25SETPARMS;
  extern unsigned IOCTL_SIOCDEVPLIP;
  extern unsigned IOCTL_SIOCIPXCFGDATA;
