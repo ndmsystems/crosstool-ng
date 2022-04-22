@@ -11,7 +11,7 @@ do_debug_ltrace_extract() {
 
     if [ ! -f .autoreconf.ct-ng ]; then
 	CT_DoLog DEBUG "Running autoreconf"
-	CT_DoExecLog ALL autoreconf -i
+	CT_DoExecLog ALL autoreconf -fi
 	touch .autoreconf.ct-ng
     fi
 
