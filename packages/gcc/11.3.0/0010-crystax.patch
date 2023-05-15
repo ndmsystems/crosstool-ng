@@ -37,7 +37,7 @@ Date:   Wed Jul 29 11:28:29 2015 +0300
 
 --- a/gcc/config.gcc
 +++ b/gcc/config.gcc
-@@ -1134,14 +1134,18 @@
+@@ -1136,14 +1136,18 @@
  	extra_options="${extra_options} netbsd.opt netbsd-elf.opt"
  	;;
  aarch64*-*-linux*)
@@ -57,7 +57,7 @@ Date:   Wed Jul 29 11:28:29 2015 +0300
  	esac
  	aarch64_multilibs="${with_multilib_list}"
  	if test "$aarch64_multilibs" = "default"; then
-@@ -2556,6 +2560,17 @@
+@@ -2558,6 +2562,17 @@
  	tm_file="dbxelf.h elfos.h gnu-user.h linux.h linux-android.h glibc-stdint.h ${tm_file} mips/gnu-user.h mips/linux.h mips/linux-common.h"
  	extra_options="${extra_options} linux-android.opt"
  	case ${target} in
@@ -174,7 +174,7 @@ Date:   Wed Jul 29 11:28:29 2015 +0300
        : min >= -256 && max < 256					\
 --- a/gcc/config/arm/arm.md
 +++ b/gcc/config/arm/arm.md
-@@ -9360,7 +9360,7 @@
+@@ -9367,7 +9367,7 @@
     (match_operand:SI 2 "const_int_operand")	; total range
     (match_operand:SI 3 "" "")			; table label
     (match_operand:SI 4 "" "")]			; Out of range label
@@ -452,7 +452,7 @@ Date:   Wed Jul 29 11:28:29 2015 +0300
  #if ((defined(_LIBOBJC) || defined(_LIBOBJC_WEAK)) \
 --- a/libstdc++-v3/configure
 +++ b/libstdc++-v3/configure
-@@ -74044,6 +74044,18 @@
+@@ -74093,6 +74093,18 @@
  #include <sys/syscall.h>
  	   #include <unistd.h>
  	   int lk;
