@@ -12,14 +12,12 @@ Fixes commit 774058d72942249f71d74e7f2b639f77184160a6
 
 (cherry picked from commit 2955ef4b7c9b56fcd7abfeddef7ee83c60abff98)
 ---
- sysdeps/unix/sysv/linux/sys/mount.h | 6 +++---
+ sysdeps/unix/sysv/linux/sys/mount.h |    6 +++---
  1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/sysdeps/unix/sysv/linux/sys/mount.h b/sysdeps/unix/sysv/linux/sys/mount.h
-index 2e3fd6a7fe..19841d0738 100644
 --- a/sysdeps/unix/sysv/linux/sys/mount.h
 +++ b/sysdeps/unix/sysv/linux/sys/mount.h
-@@ -188,9 +188,6 @@ enum
+@@ -188,9 +188,6 @@
  };
  
  
@@ -29,7 +27,7 @@ index 2e3fd6a7fe..19841d0738 100644
  /* fsmount flags.  */
  #define FSMOUNT_CLOEXEC         0x00000001
  
-@@ -261,6 +258,9 @@ enum fsconfig_command
+@@ -261,6 +258,9 @@
  };
  #endif
  
@@ -39,5 +37,3 @@ index 2e3fd6a7fe..19841d0738 100644
  /* open_tree flags.  */
  #define OPEN_TREE_CLONE    1         /* Clone the target tree and attach the clone */
  #define OPEN_TREE_CLOEXEC  O_CLOEXEC /* Close the file on execve() */
--- 
-2.31.1

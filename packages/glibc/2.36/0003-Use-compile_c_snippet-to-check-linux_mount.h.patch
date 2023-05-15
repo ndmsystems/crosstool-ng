@@ -9,14 +9,12 @@ Checked on x86_64-linux-gnu.
 Reviewed-by: Florian Weimer <fweimer@redhat.com>
 (cherry picked from commit e1226cdc6b209539a92d32d5b620ba53fd35abf3)
 ---
- sysdeps/unix/sysv/linux/tst-mount-consts.py | 5 +++++
+ sysdeps/unix/sysv/linux/tst-mount-consts.py |    5 +++++
  1 file changed, 5 insertions(+)
 
-diff --git a/sysdeps/unix/sysv/linux/tst-mount-consts.py b/sysdeps/unix/sysv/linux/tst-mount-consts.py
-index a62f803123..be2ef2daf1 100755
 --- a/sysdeps/unix/sysv/linux/tst-mount-consts.py
 +++ b/sysdeps/unix/sysv/linux/tst-mount-consts.py
-@@ -33,6 +33,11 @@ def main():
+@@ -33,6 +33,11 @@
                          help='C compiler (including options) to use')
      args = parser.parse_args()
  
@@ -28,5 +26,3 @@ index a62f803123..be2ef2daf1 100755
      linux_version_headers = glibcsyscalls.linux_kernel_version(args.cc)
      # Constants in glibc were updated to match Linux v5.16.  When glibc
      # constants are updated this value should be updated to match the
--- 
-2.31.1
