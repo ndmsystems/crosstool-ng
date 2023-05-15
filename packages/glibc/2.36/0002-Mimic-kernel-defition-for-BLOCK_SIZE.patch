@@ -9,11 +9,9 @@ sys/mount.h.
 Reviewed-by: Florian Weimer <fweimer@redhat.com>
 (cherry picked from commit c68b6044bc7945716431f1adc091b17c39b80a06)
 ---
- sysdeps/unix/sysv/linux/sys/mount.h | 2 +-
+ sysdeps/unix/sysv/linux/sys/mount.h |    2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/sysdeps/unix/sysv/linux/sys/mount.h b/sysdeps/unix/sysv/linux/sys/mount.h
-index f965986ba8..df6b0dbb42 100644
 --- a/sysdeps/unix/sysv/linux/sys/mount.h
 +++ b/sysdeps/unix/sysv/linux/sys/mount.h
 @@ -27,8 +27,8 @@
@@ -26,5 +24,3 @@ index f965986ba8..df6b0dbb42 100644
  
  
  /* These are the fs-independent mount-flags: up to 16 flags are
--- 
-2.31.1

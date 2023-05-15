@@ -29,17 +29,15 @@ Checked on x86_64-linux-gnu.
 Reviewed-by: Florian Weimer <fweimer@redhat.com>
 (cherry picked from commit 774058d72942249f71d74e7f2b639f77184160a6)
 ---
- sysdeps/unix/sysv/linux/Makefile             |  8 +++
- sysdeps/unix/sysv/linux/sys/mount.h          | 71 +++++++++++++++++---
- sysdeps/unix/sysv/linux/tst-mount-compile.py | 66 ++++++++++++++++++
+ sysdeps/unix/sysv/linux/Makefile             |    8 +++
+ sysdeps/unix/sysv/linux/sys/mount.h          |   71 +++++++++++++++++++++++----
+ sysdeps/unix/sysv/linux/tst-mount-compile.py |   66 +++++++++++++++++++++++++
  3 files changed, 137 insertions(+), 8 deletions(-)
  create mode 100755 sysdeps/unix/sysv/linux/tst-mount-compile.py
 
-diff --git a/sysdeps/unix/sysv/linux/Makefile b/sysdeps/unix/sysv/linux/Makefile
-index a139a16532..3ceda9fdbf 100644
 --- a/sysdeps/unix/sysv/linux/Makefile
 +++ b/sysdeps/unix/sysv/linux/Makefile
-@@ -265,6 +265,14 @@ $(objpfx)tst-mount-consts.out: ../sysdeps/unix/sysv/linux/tst-mount-consts.py
+@@ -265,6 +265,14 @@
  	  < /dev/null > $@ 2>&1; $(evaluate-test)
  $(objpfx)tst-mount-consts.out: $(sysdeps-linux-python-deps)
  
@@ -54,8 +52,6 @@ index a139a16532..3ceda9fdbf 100644
  tst-rseq-disable-ENV = GLIBC_TUNABLES=glibc.pthread.rseq=0
  
  endif # $(subdir) == misc
-diff --git a/sysdeps/unix/sysv/linux/sys/mount.h b/sysdeps/unix/sysv/linux/sys/mount.h
-index df6b0dbb42..2e3fd6a7fe 100644
 --- a/sysdeps/unix/sysv/linux/sys/mount.h
 +++ b/sysdeps/unix/sysv/linux/sys/mount.h
 @@ -27,6 +27,13 @@
@@ -171,7 +167,7 @@ index df6b0dbb42..2e3fd6a7fe 100644
  #define MS_MGC_VAL 0xc0ed0000	/* Magic flag number to indicate "new" flags */
  #define MS_MGC_MSK 0xffff0000	/* Magic flag number mask */
  
-@@ -106,20 +142,35 @@ enum
+@@ -106,20 +142,35 @@
     is probably as bad and I don't want to create yet another include
     file.  */
  
@@ -207,7 +203,7 @@ index df6b0dbb42..2e3fd6a7fe 100644
  #define BLKGETSIZE64 _IOR(0x12,114,size_t) /* return device size.  */
  
  
-@@ -157,6 +208,7 @@ enum
+@@ -157,6 +208,7 @@
  #define MOUNT_ATTR_NOSYMFOLLOW  0x00200000 /* Do not follow symlinks.  */
  
  
@@ -215,7 +211,7 @@ index df6b0dbb42..2e3fd6a7fe 100644
  /* For mount_setattr.  */
  struct mount_attr
  {
-@@ -165,6 +217,7 @@ struct mount_attr
+@@ -165,6 +217,7 @@
    uint64_t propagation;
    uint64_t userns_fd;
  };
@@ -223,7 +219,7 @@ index df6b0dbb42..2e3fd6a7fe 100644
  
  #define MOUNT_ATTR_SIZE_VER0    32 /* sizeof first published struct */
  
-@@ -185,26 +238,28 @@ struct mount_attr
+@@ -185,26 +238,28 @@
  #define FSPICK_EMPTY_PATH       0x00000008
  
  
@@ -260,9 +256,6 @@ index df6b0dbb42..2e3fd6a7fe 100644
  
  /* open_tree flags.  */
  #define OPEN_TREE_CLONE    1         /* Clone the target tree and attach the clone */
-diff --git a/sysdeps/unix/sysv/linux/tst-mount-compile.py b/sysdeps/unix/sysv/linux/tst-mount-compile.py
-new file mode 100755
-index 0000000000..0ec74d4e0b
 --- /dev/null
 +++ b/sysdeps/unix/sysv/linux/tst-mount-compile.py
 @@ -0,0 +1,66 @@
@@ -332,5 +325,3 @@ index 0000000000..0ec74d4e0b
 +
 +if __name__ == '__main__':
 +    main()
--- 
-2.31.1
