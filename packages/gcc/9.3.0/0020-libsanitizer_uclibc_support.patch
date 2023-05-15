@@ -252,7 +252,7 @@ Date:   Tue Nov 5 18:01:20 2019 +0300
  #if SANITIZER_LINUX && (__ANDROID_API__ >= 21 || __GLIBC_PREREQ (2, 14))
  CHECK_TYPE_SIZE(mmsghdr);
  CHECK_SIZE_AND_OFFSET(mmsghdr, msg_hdr);
-@@ -1254,7 +1263,7 @@
+@@ -1255,7 +1264,7 @@
  COMPILER_CHECK(__sanitizer_XDR_FREE == XDR_FREE);
  #endif
  
@@ -302,7 +302,7 @@ Date:   Tue Nov 5 18:01:20 2019 +0300
    extern unsigned struct_rlimit64_sz;
    extern unsigned struct_statvfs64_sz;
  
-@@ -607,10 +621,23 @@
+@@ -594,10 +608,23 @@
  #elif SANITIZER_MAC
    typedef unsigned __sanitizer_sigset_t;
  #elif SANITIZER_LINUX
@@ -326,7 +326,7 @@ Date:   Tue Nov 5 18:01:20 2019 +0300
  #elif SANITIZER_FREEBSD
    struct __sanitizer_sigset_t {
       // uint32_t * 4
-@@ -657,7 +684,17 @@
+@@ -644,7 +671,17 @@
      uptr sa_flags;
      void (*sa_restorer)();
    };
@@ -345,7 +345,7 @@ Date:   Tue Nov 5 18:01:20 2019 +0300
    struct __sanitizer_sigaction {
  #if defined(__mips__) && !SANITIZER_FREEBSD
      unsigned int sa_flags;
-@@ -849,7 +886,7 @@
+@@ -836,7 +873,7 @@
  #endif
    };
  
@@ -354,7 +354,7 @@ Date:   Tue Nov 5 18:01:20 2019 +0300
    struct __sanitizer_FILE {
      int _flags;
      char *_IO_read_ptr;
-@@ -1061,7 +1098,9 @@
+@@ -1048,7 +1085,9 @@
    extern unsigned struct_kbkeycode_sz;
    extern unsigned struct_kbsentry_sz;
    extern unsigned struct_mtconfiginfo_sz;
@@ -364,7 +364,7 @@ Date:   Tue Nov 5 18:01:20 2019 +0300
    extern unsigned struct_scc_modem_sz;
    extern unsigned struct_scc_stat_sz;
    extern unsigned struct_serial_multiport_struct_sz;
-@@ -1472,10 +1511,12 @@
+@@ -1459,10 +1498,12 @@
    extern unsigned IOCTL_SIOCAX25SETPARMS;
    extern unsigned IOCTL_SIOCDEVPLIP;
    extern unsigned IOCTL_SIOCIPXCFGDATA;
