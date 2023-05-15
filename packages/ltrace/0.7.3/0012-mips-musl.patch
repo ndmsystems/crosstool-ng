@@ -1,5 +1,9 @@
---- ltrace-0.7.3.orig/sysdeps/linux-gnu/mips/plt.c
-+++ ltrace-0.7.3/sysdeps/linux-gnu/mips/plt.c
+---
+ sysdeps/linux-gnu/mips/plt.c |    7 +++----
+ 1 file changed, 3 insertions(+), 4 deletions(-)
+
+--- a/sysdeps/linux-gnu/mips/plt.c
++++ b/sysdeps/linux-gnu/mips/plt.c
 @@ -22,7 +22,7 @@
   */
  
