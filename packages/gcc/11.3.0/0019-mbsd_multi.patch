@@ -48,7 +48,7 @@ Date:   Tue Jul 31 00:52:27 2007 +0000
      case OPT_fconstant_string_class_:
        constant_string_class_name = arg;
        break;
-@@ -1196,6 +1205,47 @@
+@@ -1198,6 +1207,47 @@
        return false;
      }
  
@@ -122,7 +122,7 @@ Date:   Tue Jul 31 00:52:27 2007 +0000
  ; On SVR4 targets, it also controls whether or not to emit a
 --- a/gcc/doc/invoke.texi
 +++ b/gcc/doc/invoke.texi
-@@ -9055,6 +9055,17 @@
+@@ -9058,6 +9058,17 @@
  @option{-Wall} and by @option{-Wpedantic}, which can be disabled with
  @option{-Wno-pointer-sign}.
  
