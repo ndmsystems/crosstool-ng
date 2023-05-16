@@ -511,6 +511,16 @@ do_gcc_core_backend() {
         *)  extra_config+=( "--enable-decimal-float=${CT_CC_GCC_DEC_FLOATS}" );;
     esac
 
+    case "${CT_CC_GCC_CXX_STATIC_EH_POOL}" in
+        "") ;;
+        *)  extra_config+=( "--enable-libstdcxx-static-eh-pool" );;
+    esac
+
+    case "${CT_CC_GCC_CXX_STATIC_EH_POOL_OBJ_COUNT}" in
+        "") ;;
+        *)  extra_config+=( "--with-libstdcxx-eh-pool-obj-count=${CT_CC_GCC_CXX_STATIC_EH_POOL_OBJ_COUNT}" );;
+    esac
+
     if [ "${CT_CC_GCC_ENABLE_PLUGINS}" = "y" ]; then
         extra_config+=( --enable-plugin )
     else
@@ -1202,6 +1212,16 @@ do_gcc_backend() {
     case "${CT_CC_GCC_DEC_FLOATS}" in
         "") ;;
         *)  extra_config+=( "--enable-decimal-float=${CT_CC_GCC_DEC_FLOATS}" );;
+    esac
+
+    case "${CT_CC_GCC_CXX_STATIC_EH_POOL}" in
+        "") ;;
+        *)  extra_config+=( "--enable-libstdcxx-static-eh-pool" );;
+    esac
+
+    case "${CT_CC_GCC_CXX_STATIC_EH_POOL_OBJ_COUNT}" in
+        "") ;;
+        *)  extra_config+=( "--with-libstdcxx-eh-pool-obj-count=${CT_CC_GCC_CXX_STATIC_EH_POOL_OBJ_COUNT}" );;
     esac
 
     if [ "${CT_CC_GCC_ENABLE_PLUGINS}" = "y" ]; then

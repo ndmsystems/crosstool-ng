@@ -531,6 +531,24 @@ config CC_GCC_DEC_FLOATS
     default "dpd"   if CC_GCC_DEC_FLOATS_DPD
     default "no"    if CC_GCC_DEC_FLOATS_NO
 
+config CC_GCC_CXX_STATIC_EH_POOL
+    bool
+    prompt "Use a fixed-size static buffer for allocating exceptions"
+    default y
+    depends on GCC_13_or_later
+    help
+      Use a fixed-size static buffer for allocating exceptions
+      if malloc fails.
+
+config CC_GCC_CXX_STATIC_EH_POOL_OBJ_COUNT
+    int
+    prompt "The number of exceptions that can be allocated from the pool"
+    default 128
+    depends on CC_GCC_CXX_STATIC_EH_POOL
+    help
+      The number of exceptions that can be allocated from the pool
+      if malloc fails.
+
 #-----------------------------------------------------------------------------
 
 config CC_GCC_HAS_ARCH_OPTIONS
