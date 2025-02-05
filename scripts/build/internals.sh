@@ -142,7 +142,6 @@ do_finish() {
     if [ "${CT_TARBALL_RESULT}" = y ]; then
         tarball="${CT_TARBALL_RESULT_DIR}/${CT_TARBALL_RESULT_FILENAME}.tar.xz"
         CT_DoLog EXTRA "Creating binary toolchain tarball: ${tarball}"
-        cp "${CT_TOP_DIR}/.config" "${CT_PREFIX_DIR}/${CT_TOOLCHAIN_PKGVERSION}.config"
         (cd "${CT_PREFIX_DIR}" && \
             find ./. -print0 | \
                 LC_ALL=C sort -z | \

@@ -643,9 +643,6 @@ if [ -z "${CT_RESTART}" ]; then
     fi
     rm -f "${testc}"
 
-    CT_DoLog EXTRA "Installing user-supplied crosstool-NG configuration"
-    CT_InstallConfigurationFile .config ct-ng
-
     CT_DoStep EXTRA "Dumping internal crosstool-NG configuration"
     CT_DoLog EXTRA "Building a toolchain for:"
     CT_DoLog EXTRA "  build  = ${CT_REAL_BUILD}"
