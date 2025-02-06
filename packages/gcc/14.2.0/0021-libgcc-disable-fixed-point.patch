@@ -1,0 +1,15 @@
+---
+ libgcc/Makefile.in |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+--- a/libgcc/Makefile.in
++++ b/libgcc/Makefile.in
+@@ -42,7 +42,7 @@
+ decimal_float = @decimal_float@
+ enable_vtable_verify = @enable_vtable_verify@
+ enable_decimal_float = @enable_decimal_float@
+-fixed_point = @fixed_point@
++#fixed_point = @fixed_point@
+ with_aix_soname = @with_aix_soname@
+ solaris_ld_v2_maps = @solaris_ld_v2_maps@
+ enable_execute_stack = @enable_execute_stack@
