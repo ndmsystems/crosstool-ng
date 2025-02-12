@@ -146,7 +146,6 @@ do_finish() {
             find ./. -print0 | \
                 LC_ALL=C sort -z | \
                 tar --numeric-owner --owner=0 --group=0 \
-                    --transform "s,^\./\.,$(basename ${tarball}),S" \
                     --no-recursion --null -T - -Jcf "${tarball}")
         CT_DoLog EXTRA "Calculating binary toolchain checksum"
         sha256sum "${tarball}" > "${tarball}.asc"
