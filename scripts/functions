@@ -31,6 +31,7 @@ CT_LoadConfig() {
 
     # Target tuple: CT_TARGET needs a little love:
     CT_DoBuildTargetTuple
+    CT_SYS_TARGET=$(CT_DoConfigGuess)
 
     # Kludge: If any of the configured options needs CT_TARGET,
     # then rescan the options file now. This also handles recursive variables;
