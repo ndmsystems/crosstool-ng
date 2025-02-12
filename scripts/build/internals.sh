@@ -140,13 +140,13 @@ do_finish() {
     fi
 
     if [ "${CT_TARBALL_RESULT}" = y ]; then
-        tarball="${CT_TARBALL_RESULT_DIR}/${CT_TARBALL_RESULT_FILENAME}.tar.xz"
+        tarball="${CT_TARBALL_RESULT_DIR}/$(CT_DoDate +%Y%m%d_%H%M)_${CT_TARBALL_RESULT_FILENAME}.tar.xz"
         CT_DoLog EXTRA "Creating binary toolchain tarball: ${tarball}"
         (cd "${CT_PREFIX_DIR}" && \
             find ./. -print0 | \
                 LC_ALL=C sort -z | \
                 tar --numeric-owner --owner=0 --group=0 \
-                    --transform "s,^\./\.,${CT_TARBALL_RESULT_FILENAME},S" \
+                    --transform "s,^\./\.,$(basename ${tarball}),S" \
                     --no-recursion --null -T - -Jcf "${tarball}")
         CT_DoLog EXTRA "Calculating binary toolchain checksum"
         sha256sum "${tarball}" > "${tarball}.asc"
